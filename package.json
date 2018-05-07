@@ -43,7 +43,8 @@
     "@ngrx/store": "5.2.0",
     "@ngrx/store-devtools": "5.2.0",
     "ngrx-store-freeze": "^0.2.1",
-    "viz": "^0.0.1"
+    "viz": "^0.0.1",
+    "@ngrx/entity": "5.2.0"
   },
   "devDependencies": {
     "@angular/cli": "1.7.1",

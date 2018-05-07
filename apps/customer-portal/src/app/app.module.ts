@@ -15,9 +15,13 @@ import { storeFreeze } from 'ngrx-store-freeze';
   imports: [
     BrowserModule,
     NxModule.forRoot(),
-    RouterModule.forRoot([{path: 'auth', children: authRoutes}], { initialNavigation: 'enabled' }),
+    RouterModule.forRoot([{ path: 'auth', children: authRoutes }], {
+      initialNavigation: 'enabled'
+    }),
     AuthModule,
-    StoreModule.forRoot({},{ metaReducers : !environment.production ? [storeFreeze] : [] }),
+    // Note: Issue with storeFreeze to be fixed in NgRx v6https://github.com/nrwl/nx/issues/436
+    //StoreModule.forRoot({},{ metaReducers : !environment.production ? [storeFreeze] : [] }),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule

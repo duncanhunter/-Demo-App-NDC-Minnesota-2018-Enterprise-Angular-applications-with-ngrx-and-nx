@@ -5,6 +5,7 @@ import { NxModule } from '@nrwl/nx';
 import { RouterModule } from '@angular/router';
 import { authRoutes, AuthModule } from '@demo-app/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from '@demo-app/auth';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         { path: 'auth', children: authRoutes },
         {
           path: 'user-profile',
-          loadChildren: '@demo-app/user-profile#UserProfileModule'
+          loadChildren: '@demo-app/user-profile#UserProfileModule',
+          canActivate: [AuthGuard]
         }
       ],
       {

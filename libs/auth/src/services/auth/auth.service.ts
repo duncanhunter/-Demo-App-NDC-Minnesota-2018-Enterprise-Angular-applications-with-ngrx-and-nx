@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Authenticate } from '@demo-app/data-models';
+import { Authenticate, User } from '@demo-app/data-models';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,7 +7,10 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
-  login(authenticate: Authenticate): Observable<any> {
-    return this.httpClient.post('http://localhost:3000/login', authenticate);
+  login(authenticate: Authenticate): Observable<User> {
+    return this.httpClient.post<User>(
+      'http://localhost:3000/login',
+      authenticate
+    );
   }
 }

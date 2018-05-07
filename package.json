@@ -47,7 +47,8 @@
     "ngrx-store-freeze": "^0.2.1",
     "rxjs": "^5.5.6",
     "viz": "^0.0.1",
-    "zone.js": "^0.8.19"
+    "zone.js": "^0.8.19",
+    "@ngrx/entity": "5.2.0"
   },
   "devDependencies": {
     "@angular/cli": "1.7.1",

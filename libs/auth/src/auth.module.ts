@@ -38,8 +38,8 @@ const COMPONENTS = [LoginComponent, LoginFormComponent];
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-      providers: [AuthEffects]
-    }
+    },
+    AuthEffects
   ]
 })
 export class AuthModule {}

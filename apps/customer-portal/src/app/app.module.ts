@@ -11,7 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule,
     NxModule.forRoot(),
-    RouterModule.forRoot([{path: 'auth', children: authRoutes}], { initialNavigation: 'enabled' }),
+    RouterModule.forRoot([{path: 'auth', children: authRoutes}, {path: 'user-profile', loadChildren: '@demo-app/user-profile#UserProfileModule'}], { initialNavigation: 'enabled' }),
     AuthModule
   ],
   declarations: [AppComponent],

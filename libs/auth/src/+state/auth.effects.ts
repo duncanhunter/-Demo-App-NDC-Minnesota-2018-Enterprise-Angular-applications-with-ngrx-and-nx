@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
-import 'rxjs/add/operator/switchMap';
-import * as authActions from './auth.actions';
 import { map, catchError, tap, mergeMap } from 'rxjs/operators';
-import { AuthService } from './../services/auth/auth.service';
 import { DataPersistence } from '@nrwl/nx';
 import { Router } from '@angular/router';
+
+import { AuthService } from './../services/auth/auth.service';
 import { User } from '@demo-app/data-models';
 import { AuthData } from './auth.reducer';
+import * as authActions from './auth.actions';
 
 @Injectable()
 export class AuthEffects {

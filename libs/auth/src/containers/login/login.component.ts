@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './../../services/auth/auth.service';
-import { Authenticate, User } from '@demo-app/data-models';
-import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { User, Authenticate } from '@demo-app/data-models';
+import { Store } from '@ngrx/store';
+import * as authActions from './../../+state/auth.actions';
+import { AuthData } from '@demo-app/auth/src/+state/auth.reducer';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private store: Store<AuthData>) {}
 
   ngOnInit() {}
 
-  login(authenticate: Authenticate) {
-    this.authService
-      .login(authenticate)
-      .subscribe((user: User) =>
-        this.router.navigate([`/user-profile/${user.id}`])
-      );
+  login(authenticate: Authenticate): void {
+    this.store.dispatch(new authActions.LoginAction(authenticate));
   }
 }

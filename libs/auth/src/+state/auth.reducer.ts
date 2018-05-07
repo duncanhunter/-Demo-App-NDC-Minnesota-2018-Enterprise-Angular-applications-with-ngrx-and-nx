@@ -1,36 +1,41 @@
 import { Action } from '@ngrx/store';
-import { AuthActions, AuthActionTypes } from './auth.actions';
+import { AuthStateActions, AuthStateActionTypes } from './auth.actions';
+import { User } from '@demo-app/data-models';
 
-/**
- * Interface for the 'Auth' data used in
- *  - AuthState, and
- *  - authReducer
- */
-export interface AuthData {}
+export interface AuthData {
+  user: User,
+  loading: boolean
+}
 
-/**
- * Interface to the part of the Store containing AuthState
- * and other information related to AuthData.
- */
 export interface AuthState {
   readonly auth: AuthData;
 }
 
-export const initialState: AuthData = {};
+export const initialState: AuthData = {
+  user: null,
+  loading: false
+};
 
 export function authReducer(
-  state = initialState,
-  action: AuthActions
+  state: AuthData,
+  action: AuthStateActions
 ): AuthData {
   switch (action.type) {
-    case AuthActionTypes.AuthAction:
-      return state;
-
-    case AuthActionTypes.AuthLoaded: {
-      return { ...state, ...action.payload };
+    case AuthStateActionTypes.Login: {
+      return {
+        ...state,
+        loading: true
+      };
     }
-
-    default:
+    case AuthStateActionTypes.LoginSuccess: {
+      return {
+        ...state,
+        loading: false,
+        user: action.payload
+      };
+    }
+    default: {
       return state;
+    }
   }
 }
